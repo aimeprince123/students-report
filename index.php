@@ -2,7 +2,7 @@
 <?php
 require_once "db.php";
 
-$result = $conn->query("SELECT * FROM students ORDER BY id DESC");
+$result = $conn->query("SELECT * FROM students ORDER BY id ASC");
 
 function e($value) {
     return htmlspecialchars((string)$value, ENT_QUOTES, "UTF-8");
@@ -17,67 +17,121 @@ function e($value) {
     <title>School Management System</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background: #f0f4f8;
+            margin: 0;
             padding: 30px;
-        }
+            background:darkviolet;
+}
 
         .container {
             max-width: 1100px;
-            margin: auto;
-            background: white;
+            margin: 30px auto;
+            background:black(255, 255, 255, 0.94);
             padding: 25px;
-            border-radius: 10px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         h1 {
             text-align: center;
-            color: darkblue;
+            color:white;
+            font-size: 32px;
+        }
+
+        .add, .edit, .delete {
+            display: inline-block;
+            padding: 9px 13px;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .add {
+            background: #16a34a;
+        }
+
+        .add:hover {
+            background: #15803d;
+        }
+
+        .edit {
+            background: green;
+        }
+
+        .edit:hover {
+            background: #1d4ed8;
+        }
+
+        .delete {
+            background: #dc2626;
+        }
+
+        .delete:hover {
+            background: #b91c1c;
+        }
+
+        .delete-form {
+            display: inline;
+        }
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            background: white;
         }
 
         th, td {
-            border: 1px solid #ddd;
+            border: 1px solid #d1dbe8;
             padding: 12px;
             text-align: left;
         }
 
         th {
-            background: darkblue;
+            background: #123b70;
             color: white;
         }
 
-        .add, .edit, .delete {
-            display: inline-block;
-            padding: 8px 12px;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
+        tr:nth-child(even) {
+            background: #eaf2ff;
         }
 
-        .add {
-            background: green;
-        }
-
-        .edit {
-            background: blue;
-        }
-
-        .delete {
-            background: red;
+        tr:hover {
+            background: #dbeafe;
         }
 
         .delete-form {
             display: inline;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 15px;
+                margin: 10px auto;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
@@ -85,9 +139,9 @@ function e($value) {
 
 <div class="container">
 
-    <h1>School Management System</h1>
+    <h1>SCHOOL RECORDS</h1>
 
-    <a class="add" href="create.php">+ Add Student</a>
+    <a class="add" href="create.php">+ ADD NEW STUDENT</a>
 
     <table>
         <tr>
@@ -145,4 +199,5 @@ function e($value) {
 </div>
 
 </body>
+
 </html>
